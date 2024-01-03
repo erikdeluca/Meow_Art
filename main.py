@@ -45,5 +45,17 @@ def generate_image(tool_input, cat):
     image = res['data'][0]['url']
 
     size = settings['image_size'].split('x')
+    
+    image_html = f"<img src='{image}' style='width: {int(size[0]) / 2}px; height: {int(size[1]) / 2}px;' alt='Generated image from: {tool_input}.' />"
 
-    return f"<img src='{image}' style='width: {int(size[0]) / 2}px; height: {int(size[1]) / 2}px;' alt='Generated image' />"
+    download_button_html = (
+        f"<div style='text-align: center; margin-top: 10px;'>"
+        f"<a href='{image}' download='generated_image.jpg'>"
+        f"<button class='btn btn-primary btn-outline btn-sm rounded-md hover:shadow-lg'>"
+        f"Open Original"
+        f"</button>"
+        f"</a>"
+        f"</div>"
+    )
+
+    return image_html + download_button_html
